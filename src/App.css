@@ -1,0 +1,133 @@
+.App {
+width: 100%;
+}
+
+.Assistant {
+  width: 100px;
+  height: 100px;
+  background: #7454e75b;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+  border-radius: 20px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 45px;
+  left: 3%;
+  /* opacity: 0.4; */
+}
+
+.main-header {
+  padding: 12px 7%;
+  display: grid;
+  gap: 16px;
+  background-color: #7454E7;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+  color: #FFEAC9;
+}
+
+.header-btns > *:first-child{
+margin-right: 8px;
+}
+
+
+.hero {
+  min-height: 100vh;
+  padding: 60px 7%;
+  /* background: #9DA4FF; */
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 40px;
+  /* background: linear-gradient(#7454E7, #9DA4FF); */
+}
+
+.hero > div {
+  width: 100%;
+  max-width: 400px;
+}
+
+.hero h1 {
+  color: #7454E7;
+}
+
+.hero-img {
+  order: 1;
+}
+
+.hero-para {
+  margin: 24px 0;
+}
+
+.middle {
+  display: grid;
+  gap: 50px;
+  text-align: center;
+  padding: 150px 7%;
+}
+
+.middle > div {
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+  max-width: 300px;
+  margin: auto;
+  display: grid;
+  gap: 12px;
+}
+
+.dummy-icons {
+  display: block;
+  margin: auto;
+}
+
+footer {
+  display: grid;
+  gap: 30px;
+  text-align: center;
+  padding: 60px 7%;
+  background-color: #7454E7;
+}
+
+footer p {
+  font-size: 2em;
+  font-weight: 500;
+  max-width: 550px;
+  margin: auto;
+  font-weight: 600;
+  color: black;
+}
+
+
+
+
+
+
+@media screen and (min-width: 768px) {
+  .main-header {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+  }
+
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .middle {
+    grid-template-columns: auto auto;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+.middle {
+  grid-template-columns: auto auto auto;
+}
+
+.hero > div {
+  max-width: 500px;
+}
+
+}
+
