@@ -3,8 +3,8 @@ width: 100%;
 }
 
 .Assistant {
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 200px;
   background: #7454e75b;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
   border-radius: 20px;
@@ -13,8 +13,8 @@ width: 100%;
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 45px;
-  left: 3%;
+  /* bottom: 45px;
+  left: 3%; */
   /* opacity: 0.4; */
 }
 

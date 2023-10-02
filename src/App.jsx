@@ -3,15 +3,25 @@ import { useState } from 'react'
 import Assistant from './components/Assistant'
 import './App.css'
 
-function Button({ onClick, text }) {
+function Button({ onClick, onHover, text }) {
   return (
-    <button className='btn' onClick={onClick}>{text}</button>
+    <button onMouseEnter={onHover} className='btn' onClick={onClick}>{text}</button>
   )
 }
 
 function App() {
   const [response, setResponse] = useState('');
 
+  const [assistantPosition, setAssistantPosition] = useState({left: 20, bottom:20});
+
+  const handleButtonHover = (e) => {
+    const buttonPosition = e.getBoundingClientRect();
+    
+    setAssistantPosition({
+      left: buttonPosition.left + window.scrollX - 30, // Adjust positioning as needed
+      top: buttonPosition.bottom + window.scrollY - 60, // Adjust positioning as needed
+    });
+  };
 
   // Function to simulate the assistant's response
   const simulateAssistantResponse = () => {
@@ -26,11 +36,10 @@ function App() {
 
   return (
     <main className='App'>
-      <Assistant />
       <header className='main-header'>
         <h3 className='brand-name'>DummyMe</h3>
         <div className='header-btns'>
-          <Button onClick={handleButtonClick} text="Log In" />
+          <Button onHover={handleButtonHover}  id="hover-button" text="Log In" />
           <Button onClick={handleButtonClick} text="Sign Up" />
           {response && <Assistant response={response} />}
         </div>
@@ -68,6 +77,7 @@ function App() {
       <footer>
       <p>Please feel free to send us any additional dummy texts.</p>
       <Button onClick={handleButtonClick} text="Tip Us" /></footer>
+      <Assistant positionX={assistantPosition.left} positionY={assistantPosition.bottom} />
     </main>
   )
 }
