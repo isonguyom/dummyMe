@@ -1,21 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+// import { useState } from 'react';
 
-function Assistant({positionX, positionY}) {
-  const [position] = useState({ left: positionX, bottom: positionY }); // Initial position
-
-  
+function Assistant({ message, position, size }) {
+  // const [message, setMessage] = useState('');
 
   return (
-    <div
-      className={`on-page-assistant Assistant`}
-      style={{ left: position.left, bottom: position.bottom }}
-    >
-      <div className="assistant-icon">
-      </div>
-      <div className="assistant-text">
-        <p>Hello! How can I assist you today?</p>
-      </div>
+    <div className="Assistant"
+      style={{
+        left: `${position.x}%`,
+        bottom: `${position.y}px`,
+        width: `${size.x}px`,
+       height: `${size.y}px`
+      }}>
+      <p>{message}</p>
     </div>
   );
 }

@@ -3,35 +3,51 @@ import { useState } from 'react'
 import Assistant from './components/Assistant'
 import './App.css'
 
-function Button({ onClick, onHover, text }) {
+function Button({ onHover, onHoverEnd, text, message }) {
+  // useEffect(() => {
+  //   if (hovered) {
+  //     const onMouseMove = (e) => {
+  //       onHover(e, message);
+  //     };
+
+  //     window.addEventListener('mousemove', onMouseMove);
+
+  //     return () => {
+  //       window.removeEventListener('mousemove', onMouseMove);
+  //     };
+  //   }
+  // }, [hovered, message, onHover]);
   return (
-    <button onMouseEnter={onHover} className='btn' onClick={onClick}>{text}</button>
+    <button onMouseEnter={(e) => onHover(e, message)} onMouseLeave={() => onHoverEnd()} className='btn'>{text}</button>
   )
 }
 
 function App() {
-  const [response, setResponse] = useState('');
+  const [message, setMessage] = useState('Hey! how can I be of help?');
+  const [assistantPosition, setAssistantPosition] = useState({ x: 3, y: 45 })
+  const [isHovered, setIsHovered] = useState(false);
+  const [assistantSize, setAssistantSize] = useState({x: 150, y:100})
 
-  const [assistantPosition, setAssistantPosition] = useState({left: 20, bottom:20});
+  const handleMouseEnter = (btn, hoverMessage) => {
+    // const maxX = window.innerWidth - 200;
+    // const maxY = window.innerHeight - 100; 
+    // const xPosition = Math.min(maxX, Math.max(0, btn.clientX));
+    // const yPosition = Math.min(maxY, Math.max(0, btn.clientY));
+    const buttonPosition = { x: 9, y: 300}
+    const size = {x: 400, y: 100}
+    setIsHovered(true)
 
-  const handleButtonHover = (e) => {
-    const buttonPosition = e.getBoundingClientRect();
-    
-    setAssistantPosition({
-      left: buttonPosition.left + window.scrollX - 30, // Adjust positioning as needed
-      top: buttonPosition.bottom + window.scrollY - 60, // Adjust positioning as needed
-    });
+    setAssistantPosition(buttonPosition)
+    setAssistantSize(size)
+    setMessage(hoverMessage);
+    setIsHovered(false)
+    console.log(buttonPosition)
   };
 
-  // Function to simulate the assistant's response
-  const simulateAssistantResponse = () => {
-    return "Assistant: Hello! How can I assist you today?";
-  };
-
-  // Event handler for button click
-  const handleButtonClick = () => {
-    const assistantResponse = simulateAssistantResponse();
-    setResponse(assistantResponse);
+  const handleMouseLeave = () => {
+    setMessage('Hey! how can I be of help?')
+    setAssistantSize({x: 150, y:100})
+    setAssistantPosition({ x: 3, y: 45 })
   };
 
   return (
@@ -39,16 +55,15 @@ function App() {
       <header className='main-header'>
         <h3 className='brand-name'>DummyMe</h3>
         <div className='header-btns'>
-          <Button onHover={handleButtonHover}  id="hover-button" text="Log In" />
-          <Button onClick={handleButtonClick} text="Sign Up" />
-          {response && <Assistant response={response} />}
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} hovered={isHovered} text="Log In" message="Clicking this button will enable you to log in to your account" />
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Sign Up" message="Clicking this button will enable you to create an account with us" />
         </div>
       </header>
       <section className='hero'>
         <div className='hero-text'>
           <h1 className='hero-title'>Welcome to the Dummy Text Generator!</h1>
           <p className='hero-para'>This handy tool helps you create dummy text for all your layout needs.</p>
-          <Button onClick={handleButtonClick} text="Learn More" />
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Learn More" message="Click here to learn more about us" />
         </div>
         <div className='hero-img'>
           <img src='hero-img.png' alt='hero' />
@@ -56,28 +71,28 @@ function App() {
       </section>
       <section className='middle'>
         <div>
-        <img className='dummy-icons' src='create.png' alt='share' />
-        <h3>Dummy Header 1</h3>
-        <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
-          <Button onClick={handleButtonClick} text="Create your dummy" />
+          <img className='dummy-icons' src='create.png' alt='share' />
+          <h3>Dummy Header 1</h3>
+          <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Generate a dummy" message='Click here to see me do magic' />
         </div>
         <div>
-        <img className='dummy-icons' src='customize.png' alt='customize' />
-        <h3>Dummy Header 2</h3>
-        <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
-          <Button onClick={handleButtonClick} text="Customize your dummy" />
+          <img className='dummy-icons' src='customize.png' alt='customize' />
+          <h3>Dummy Header 2</h3>
+          <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Customize your dummy" message='A custom dummy text could fill good' />
         </div>
         <div>
-        <img className='dummy-icons' src='share.png' alt='share' />
-        <h3>Dummy Header 3</h3>
-        <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
-          <Button onClick={handleButtonClick} text="Share your dummy" />
+          <img className='dummy-icons' src='share.png' alt='share' />
+          <h3>Dummy Header 3</h3>
+          <p>We are gradually adding new functionality and we welcome your suggestions and feedback</p>
+          <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Share your dummy" message='Let friends use your dummy text' />
         </div>
       </section>
       <footer>
-      <p>Please feel free to send us any additional dummy texts.</p>
-      <Button onClick={handleButtonClick} text="Tip Us" /></footer>
-      <Assistant positionX={assistantPosition.left} positionY={assistantPosition.bottom} />
+        <p>Please feel free to send us any additional dummy texts.</p>
+        <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Tip Us" message="Who doesn't like a tip" /></footer>
+      <Assistant message={message} position={assistantPosition} size={assistantSize} />
     </main>
   )
 }

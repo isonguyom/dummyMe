@@ -3,19 +3,18 @@ width: 100%;
 }
 
 .Assistant {
-  width: 300px;
-  height: 200px;
-  background: #7454e75b;
+  background: #996d3365;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
   border-radius: 20px;
-  padding: 1em;
+  padding: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  /* bottom: 45px;
-  left: 3%; */
-  /* opacity: 0.4; */
+  color: black;
+  font-weight: 800;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
 }
 
 .main-header {
