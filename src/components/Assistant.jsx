@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 // import { useState } from 'react';
 
-function Assistant({ message, position}) {
+function Assistant({ message, position }) {
   // const [message, setMessage] = useState('');
 
   return (
@@ -11,10 +11,10 @@ function Assistant({ message, position}) {
         bottom: `${position.y}px`,
       }}>
       <div className="assistant-text-container">
-       <p className="assistant-text">{message}</p>
-       </div>
-      <img src="assistant.gif" alt="assistant" 
-       />
+        <p className="assistant-text">{message}</p>
+      </div>
+      <img src="assistant.gif" alt="assistant"
+      />
     </div>
   );
 }

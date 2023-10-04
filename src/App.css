@@ -3,17 +3,12 @@
 }
 
 .Assistant {
-  /* background: #996d3365; */
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
-  border-radius: 20px;
-  padding: 0.5em;
+  background: transparent;
+  border: transparent;
   display: grid;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   color: #151515;
   font-weight: 800;
-  text-align: center;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   pointer-events: none;
