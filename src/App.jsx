@@ -23,30 +23,26 @@ function Button({ onHover, onHoverEnd, text, message }) {
 }
 
 function App() {
-  const [message, setMessage] = useState('Hey! how can I be of help?');
+  const [message, setMessage] = useState('How can I help');
   const [assistantPosition, setAssistantPosition] = useState({ x: 3, y: 45 })
   const [isHovered, setIsHovered] = useState(false);
-  const [assistantSize, setAssistantSize] = useState({x: 150, y:100})
 
   const handleMouseEnter = (btn, hoverMessage) => {
-    // const maxX = window.innerWidth - 200;
-    // const maxY = window.innerHeight - 100; 
-    // const xPosition = Math.min(maxX, Math.max(0, btn.clientX));
-    // const yPosition = Math.min(maxY, Math.max(0, btn.clientY));
-    const buttonPosition = { x: 9, y: 300}
-    const size = {x: 400, y: 100}
+    const maxX = window.innerWidth - 200;
+    const maxY = window.innerHeight - 100;
+    const xPosition = Math.min(maxX, Math.max(0, btn.clientX));
+    const yPosition = Math.min(maxY, Math.max(0, btn.clientY));
+    const buttonPosition = { x: xPosition, y: yPosition }
     setIsHovered(true)
 
     setAssistantPosition(buttonPosition)
-    setAssistantSize(size)
     setMessage(hoverMessage);
     setIsHovered(false)
     console.log(buttonPosition)
   };
 
   const handleMouseLeave = () => {
-    setMessage('Hey! how can I be of help?')
-    setAssistantSize({x: 150, y:100})
+    setMessage('How can I help')
     setAssistantPosition({ x: 3, y: 45 })
   };
 
@@ -92,7 +88,7 @@ function App() {
       <footer>
         <p>Please feel free to send us any additional dummy texts.</p>
         <Button onHover={handleMouseEnter} onHoverEnd={handleMouseLeave} text="Tip Us" message="Who doesn't like a tip" /></footer>
-      <Assistant message={message} position={assistantPosition} size={assistantSize} />
+      <Assistant message={message} position={assistantPosition} />
     </main>
   )
 }

@@ -1,20 +1,80 @@
 .App {
-width: 100%;
+  width: 100%;
 }
 
 .Assistant {
-  background: #996d3365;
+  /* background: #996d3365; */
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
   border-radius: 20px;
   padding: 0.5em;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   position: fixed;
-  color: black;
+  color: #151515;
   font-weight: 800;
   text-align: center;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  pointer-events: none;
+  height: fit-content;
+  width: fit-content;
+}
+
+.Assistant img {
+  display: block;
+  width: 100px;
+}
+
+.assistant-text-container {
+  opacity: 0;
+  width: 0;
+  padding: 20px;
+  height: fit-content;
+  background: #996d3331;
+  border-radius: 40px;
+  border-bottom-left-radius: 0;
+  animation: typing 2s steps(40, end) forwards, blink-caret 0.5s infinite;
+}
+
+.assistant-text {
+  border-right: 2px solid #000;
+  padding-right: 4px;
+  animation: typing-text 2s steps(40, end) forwards, blink-caret 0.5s infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes typing-text {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: #000;
+  }
 }
 
 .main-header {
@@ -26,8 +86,8 @@ width: 100%;
   color: #FFEAC9;
 }
 
-.header-btns > *:first-child{
-margin-right: 8px;
+.header-btns>*:first-child {
+  margin-right: 8px;
 }
 
 
@@ -41,7 +101,7 @@ margin-right: 8px;
   /* background: linear-gradient(#7454E7, #9DA4FF); */
 }
 
-.hero > div {
+.hero>div {
   width: 100%;
   max-width: 400px;
 }
@@ -65,12 +125,13 @@ margin-right: 8px;
   padding: 150px 7%;
 }
 
-.middle > div {
+.middle>div {
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
   max-width: 300px;
   margin: auto;
   display: grid;
   gap: 12px;
+  padding: 12px;
 }
 
 .dummy-icons {
@@ -120,13 +181,12 @@ footer p {
 
 
 @media screen and (min-width: 1024px) {
-.middle {
-  grid-template-columns: auto auto auto;
-}
+  .middle {
+    grid-template-columns: auto auto auto;
+  }
 
-.hero > div {
-  max-width: 500px;
-}
+  .hero>div {
+    max-width: 500px;
+  }
 
 }
-
