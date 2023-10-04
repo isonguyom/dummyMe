@@ -23,7 +23,7 @@
 
 .Assistant img {
   display: block;
-  width: 100px;
+  width: 80px;
 }
 
 .assistant-text-container {
@@ -33,6 +33,7 @@
   height: fit-content;
   background: #996d3331;
   border-radius: 40px;
+  font-size: 0.8rem;
   border-bottom-left-radius: 0;
   animation: typing 2s steps(40, end) forwards, blink-caret 0.5s infinite;
 }
